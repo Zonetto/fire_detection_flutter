@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a en locale. All the
+// This is a library that provides messages for a ar locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -18,14 +18,16 @@ final messages = new MessageLookup();
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'en';
+  String get localeName => 'ar';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "civilDefenseDivision": MessageLookupByLibrary.simpleMessage(""),
-        "jobNumber": MessageLookupByLibrary.simpleMessage(""),
-        "login": MessageLookupByLibrary.simpleMessage(""),
-        "pass": MessageLookupByLibrary.simpleMessage(""),
-        "reserved": MessageLookupByLibrary.simpleMessage("")
+        "civilDefenseDivision":
+            MessageLookupByLibrary.simpleMessage("شعبة الدفاع المدني"),
+        "jobNumber": MessageLookupByLibrary.simpleMessage("الرقم الوظيفي"),
+        "login": MessageLookupByLibrary.simpleMessage("تسجيل دخول"),
+        "pass": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+        "reserved": MessageLookupByLibrary.simpleMessage(
+            "جميع الحقوق محفوظة لمركز تكنولوجيا المعلومات © 2023")
       };
 }
