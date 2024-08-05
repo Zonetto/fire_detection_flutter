@@ -52,7 +52,7 @@ class TextFormFiledWidget extends StatelessWidget {
       validator: valid,
       keyboardType: textInputType,
       decoration: InputDecoration(
-          fillColor: AppColor.textFromFieldGrey,
+          fillColor: AppColor.grey,
           focusColor: Colors.teal,
           hintText: hintText,
           prefixIcon: Icon(

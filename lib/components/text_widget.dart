@@ -1,4 +1,5 @@
 import 'package:fire_detection_app/utils/app_color.dart';
+import 'package:fire_detection_app/utils/constant.dart';
 import 'package:flutter/material.dart';
 
 class TextWidget extends StatelessWidget {
@@ -13,17 +14,17 @@ class TextWidget extends StatelessWidget {
   final String? fontFamily;
   final TextTheme? textStyle;
 
-  const TextWidget( {
+  const TextWidget({
     super.key,
     required this.title,
     this.fontSize,
     this.fontWeight,
-    this.color = AppColor.textBlack,
+    this.color = AppColor.black,
     this.alignment = TextAlign.right,
     this.maxLines,
     this.overflow,
     this.height,
-    this.fontFamily = 'AvenirArabic',
+    this.fontFamily = FONT_FAMILY,
     this.textStyle,
   });
 

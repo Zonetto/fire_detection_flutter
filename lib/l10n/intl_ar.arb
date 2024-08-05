@@ -3,5 +3,12 @@
     "jobNumber": "الرقم الوظيفي",
     "pass": "كلمة المرور",
     "civilDefenseDivision": "شعبة الدفاع المدني",
-    "reserved": "جميع الحقوق محفوظة لمركز تكنولوجيا المعلومات © 2023"
+    "reserved": "جميع الحقوق محفوظة لمركز تكنولوجيا المعلومات © 2023",
+    "found": "موجودة",
+    "notFound": "غير موجودة",
+    "discover": "تم الكشف",
+    "notDiscover": "لم يتم الكشف",
+    "firefighters": "المطافئ",
+    "extinguishersNotFound": "الطفايات الغير موجودة",
+    "extinguishersFound": "الطفايات الموجودة"
 }

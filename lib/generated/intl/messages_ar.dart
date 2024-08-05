@@ -24,8 +24,17 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "civilDefenseDivision":
             MessageLookupByLibrary.simpleMessage("شعبة الدفاع المدني"),
+        "discover": MessageLookupByLibrary.simpleMessage("تم الكشف"),
+        "extinguishersFound":
+            MessageLookupByLibrary.simpleMessage("الطفايات الموجودة"),
+        "extinguishersNotFound":
+            MessageLookupByLibrary.simpleMessage("الطفايات الغير موجودة"),
+        "firefighters": MessageLookupByLibrary.simpleMessage("المطافئ"),
+        "found": MessageLookupByLibrary.simpleMessage("موجودة"),
         "jobNumber": MessageLookupByLibrary.simpleMessage("الرقم الوظيفي"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل دخول"),
+        "notDiscover": MessageLookupByLibrary.simpleMessage("لم يتم الكشف"),
+        "notFound": MessageLookupByLibrary.simpleMessage("غير موجودة"),
         "pass": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "reserved": MessageLookupByLibrary.simpleMessage(
             "جميع الحقوق محفوظة لمركز تكنولوجيا المعلومات © 2023")

@@ -4,8 +4,10 @@ import 'package:fire_detection_app/components/text_widget.dart';
 import 'package:fire_detection_app/utils/app_color.dart';
 import 'package:fire_detection_app/utils/app_font_size.dart';
 import 'package:fire_detection_app/utils/constant.dart';
+import 'package:fire_detection_app/utils/navigate_utils.dart';
 import 'package:fire_detection_app/utils/responsive_screen.dart';
 import 'package:fire_detection_app/utils/s_of.dart';
+import 'package:fire_detection_app/view/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -35,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: Dimensions.screenWidth(context),
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage(IMAGE_PATH_FIRE),
+                      image: AssetImage(IMAGE_PATH_FIRE_IMAGE),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -47,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       TextWidget(
                         title: SOf.text(context).civilDefenseDivision,
-                        color: AppColor.textWhite,
+                        color: AppColor.white,
                         fontSize: AppFontSize.textTitle,
                         fontWeight: FontWeight.bold,
                       ),
@@ -68,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     TextWidget(
                       title: SOf.text(context).login,
-                      color: AppColor.textBlack,
+                      color: AppColor.black,
                       fontSize: AppFontSize.textTitle,
                       fontWeight: FontWeight.bold,
                     ),
@@ -93,7 +95,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Column(
                         children: [
                           ButtonElevatedWidget(
-                            onPressed: () {},
+                            onPressed: () {
+                              navigatePushReplacementScreen(
+                                context: context,
+                                screen: const HomeScreen(),
+                              );
+                            },
                             title: SOf.text(context).login,
                             height: 50,
                             width: 145,
@@ -101,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           const SizedBox(height: 30.0),
                           TextWidget(
                             title: SOf.text(context).reserved,
-                            color: AppColor.textBlack,
+                            color: AppColor.black,
                             fontSize: AppFontSize.textTitle2,
                           ),
                         ],

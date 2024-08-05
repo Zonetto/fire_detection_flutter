@@ -99,6 +99,76 @@ class S {
       args: [],
     );
   }
+
+  /// ``
+  String get found {
+    return Intl.message(
+      '',
+      name: 'found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get notFound {
+    return Intl.message(
+      '',
+      name: 'notFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get discover {
+    return Intl.message(
+      '',
+      name: 'discover',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get notDiscover {
+    return Intl.message(
+      '',
+      name: 'notDiscover',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get firefighters {
+    return Intl.message(
+      '',
+      name: 'firefighters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get extinguishersNotFound {
+    return Intl.message(
+      '',
+      name: 'extinguishersNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get extinguishersFound {
+    return Intl.message(
+      '',
+      name: 'extinguishersFound',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

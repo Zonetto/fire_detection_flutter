@@ -3,5 +3,12 @@
     "jobNumber": "",
     "pass": "",
     "civilDefenseDivision": "",
-    "reserved": ""
+    "reserved": "",
+    "found": "",
+    "notFound": "",
+    "discover": "",
+    "notDiscover": "",
+    "firefighters": "",
+    "extinguishersNotFound": "",
+    "extinguishersFound": ""
 }
