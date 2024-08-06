@@ -7,7 +7,6 @@ environment:
   sdk: '>=3.4.3 <4.0.0'
 
 dependencies:
-  animated_segmented_tab_control: ^2.0.0
   flutter:
     sdk: flutter
   flutter_localization: ^0.2.1
@@ -25,14 +24,6 @@ flutter:
 
   assets:
     - assets/images/
-    # - assets/images/icon_fire_extinguisher_red.jpeg
-    # - assets/images/icon_fire_extinguisher_white.jpeg
-    # - assets/images/icon_fire_extinguisher.jpeg
-    # - assets/images/icon_id.png
-    # - assets/images/icon_liquid.png
-    # - assets/images/icon_pass.png
-    # - assets/images/icon_size.png
-    # - assets/images/fire.png
 
   fonts:
     - family: AvenirArabic

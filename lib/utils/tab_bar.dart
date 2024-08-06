@@ -17,7 +17,7 @@ TabBar tabBar({
     indicatorSize: TabBarIndicatorSize.tab,
     indicator: BoxDecoration(
       borderRadius: BorderRadius.circular(REDUCE),
-      color: AppColor.iconsRed,
+      color: AppColor.red,
     ),
     indicatorPadding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
     tabs: tabs,

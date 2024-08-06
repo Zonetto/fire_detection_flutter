@@ -1,6 +1,4 @@
-import 'package:fire_detection_app/components/text_widget.dart';
 import 'package:fire_detection_app/utils/app_color.dart';
-import 'package:fire_detection_app/utils/app_font_size.dart';
 import 'package:fire_detection_app/utils/constant.dart';
 import 'package:fire_detection_app/utils/s_of.dart';
 import 'package:fire_detection_app/view/discover_screen.dart';
@@ -29,41 +27,12 @@ class _HomeScreenState extends State<HomeScreen> {
       const DiscoverScreen(),
       const NotDiscoverScreen(),
     ];
-    // final List<String> screenTitle = [
-    //   SOf.text(context).discover,
-    //   SOf.text(context).notDiscover,
-    // ];
     const TextStyle style = TextStyle(
       fontFamily: FONT_FAMILY,
       fontWeight: FontWeight.bold,
     );
 
     return Scaffold(
-      // appBar: AppBar(
-      //   actions: [
-      //     IconButton(
-      //       icon: const Icon(
-      //         Icons.qr_code,
-      //         color: Colors.black,
-      //         size: 30,
-      //       ),
-      //       onPressed: () {
-      //         //  scan.scanQR(context);
-      //       },
-      //     ),
-      //   ],
-      //   backgroundColor: AppColor.white,
-      //   elevation: ELEVATION,
-      //   centerTitle: true,
-      //   shadowColor: AppColor.white,
-      //   surfaceTintColor: AppColor.white,
-      //   title: TextWidget(
-      //     title: SOf.text(context).firefighters,
-      //     fontWeight: FontWeight.bold,
-      //     fontSize: AppFontSize.textAppBar,
-      //     color: AppColor.black,
-      //   ),
-      // ),
       backgroundColor: AppColor.white,
       body: SafeArea(
         child: screens[_selectedIndex],
@@ -73,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: ELEVATION,
         currentIndex: _selectedIndex,
         onTap: (int index) => _onItemTapped(index),
-        selectedItemColor: AppColor.iconsRed,
+        selectedItemColor: AppColor.red,
         unselectedItemColor: AppColor.grey2,
         showSelectedLabels: true,
         showUnselectedLabels: true,

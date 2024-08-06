@@ -5,9 +5,8 @@ import 'package:fire_detection_app/utils/responsive_screen.dart';
 import 'package:flutter/material.dart';
 
 class ButtonElevatedWidget extends StatelessWidget {
-  final Color? borderSideColor;
   final Color? backgroundColor;
-  final Color? foregroundColor;
+  final Color? textColor;
   final double? height;
   final String title;
   final VoidCallback onPressed;
@@ -17,9 +16,8 @@ class ButtonElevatedWidget extends StatelessWidget {
     super.key,
     required this.title,
     required this.onPressed,
-    this.borderSideColor = AppColor.iconsRed,
-    this.backgroundColor = Colors.white,
-    this.foregroundColor = AppColor.iconsRed,
+    this.backgroundColor = AppColor.red,
+    this.textColor = AppColor.white,
     this.height = 44,
     this.width,
   });
@@ -31,10 +29,10 @@ class ButtonElevatedWidget extends StatelessWidget {
     final double widthDimension = Dimensions.screenWidth(context);
     return SizedBox(
       height: height,
-      width: width ?? widthDimension,
+      width: width ?? widthDimension / 3,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColor.iconsRed,
+          backgroundColor: backgroundColor,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(REDUCE),
@@ -46,7 +44,7 @@ class ButtonElevatedWidget extends StatelessWidget {
           fontSize: textButton,
           title: title,
           fontWeight: FontWeight.bold,
-          color: Colors.white,
+          color: textColor,
         ),
       ),
     );

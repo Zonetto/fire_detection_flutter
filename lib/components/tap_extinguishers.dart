@@ -21,7 +21,7 @@ class TabExtinguishers extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: const EdgeInsets.only(top: 15.0, right: 15.0, bottom: 20.0),
+          margin: const EdgeInsets.symmetric(vertical: 20),
           child: TextWidget(
             title: title,
             fontSize: AppFontSize.textTitle,
