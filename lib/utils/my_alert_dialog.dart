@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:fire_detection_app/components/button_elevated_widget.dart';
 import 'package:fire_detection_app/components/card_radio_widget.dart';
 import 'package:fire_detection_app/components/text_form_filed_widget.dart';
@@ -13,15 +15,7 @@ myAlertDialog({
   required String barCodeInfo,
   required BuildContext context,
 }) {
-  double getResponsiveHeight(double height) {
-    double screenHeight = Dimensions.screenHeight(context);
-    return height * (screenHeight / 896.0);
-  }
-
-  double getResponsiveFontSize(double fontSize) {
-    double screenWidth = Dimensions.screenWidth(context);
-    return fontSize * (screenWidth / 414.0);
-  }
+  double screenHeight = Dimensions.screenHeight(context);
 
   return showDialog(
     context: context,
@@ -29,97 +23,123 @@ myAlertDialog({
     builder: (BuildContext context) {
       return StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
-          return Dialog(
-            insetPadding: const EdgeInsets.symmetric(
-              horizontal: HORIZONTAL,
-              vertical: 20.0,
-            ),
-            backgroundColor: AppColor.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            child: SingleChildScrollView(
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                height: Dimensions.screenHeight(context),
-                child: Column(
-                  children: [
-                    // title
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 15),
-                      alignment: Alignment.center,
-                      child: TextWidget(
-                        title: barCodeInfo,
-                        fontSize: AppFontSize.textAppBar,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    // content
-                    SizedBox(
-                      width: Dimensions.screenWidth(context),
-                      child: GridView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: (getResponsiveFontSize(1) /
-                              getResponsiveHeight(1)),
-                        ),
-                        itemCount: dialogCardList.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return CardRadioWidget(
-                            dialogCardList: dialogCardList[index],
-                            onChangedFirst: (String? value) {
-                              setState(() {
-                                dialogCardList[index].groupValue = value ?? '';
-                                dialogCardList[index].firstOptionStatus = true;
-                                dialogCardList[index].secondOptionStatus =
-                                    false;
-                              });
-                              return null;
-                            },
-                            onChangedSecond: (String? value) {
-                              setState(() {
-                                dialogCardList[index].groupValue = value ?? '';
-                                dialogCardList[index].firstOptionStatus = false;
-                                dialogCardList[index].secondOptionStatus = true;
-                              });
-                              return null;
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    const TextFormFiledWidget(
-                      textInputType: TextInputType.text,
-                      hintText: "ملاحظات",
-                      prefixIcon: Icons.note,
-                      maxLines: 10,
-                      minLines: 5,
-                      prefixIconColor: AppColor.grey3,
-                      marginBottom: 90.0,
-                      maxLength: 200,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          return Stack(
+            children: [
+              BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                child: Container(
+                  color: AppColor.white.withOpacity(0.1),
+                ),
+              ),
+              Dialog(
+                insetPadding: EdgeInsets.symmetric(
+                  horizontal: HORIZONTAL,
+                  vertical: screenHeight * 0.07,
+                ),
+                backgroundColor: AppColor.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                child: SingleChildScrollView(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Column(
                       children: [
-                        ButtonElevatedWidget(
-                          title: "إرسال",
-                          onPressed: () {},
+                        // title
+                        Container(
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          alignment: Alignment.center,
+                          child: TextWidget(
+                            title: barCodeInfo,
+                            fontSize: AppFontSize.textAppBar,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                        ButtonElevatedWidget(
-                          title: "الغاء",
-                          onPressed: () {},
-                          backgroundColor: AppColor.white,
-                          textColor: AppColor.black,
+                        // content
+                        Row(
+                          children: [
+                            Expanded(
+                              child: GridView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  mainAxisSpacing:
+                                      Dimensions.screenWidth(context) * 0.01,
+                                  crossAxisSpacing:
+                                      Dimensions.screenWidth(context) * 0.01,
+                                  mainAxisExtent: 190.0,
+                                  // mainAxisExtent:
+                                  //     Dimensions.screenHeight(context) * 0.25,
+                                ),
+                                itemCount: dialogCardList.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return CardRadioWidget(
+                                    dialogCardList: dialogCardList[index],
+                                    onChangedFirst: (String? value) {
+                                      setState(() {
+                                        dialogCardList[index].groupValue =
+                                            value ?? '';
+                                        dialogCardList[index]
+                                            .firstOptionStatus = true;
+                                        dialogCardList[index]
+                                            .secondOptionStatus = false;
+                                      });
+                                      return null;
+                                    },
+                                    onChangedSecond: (String? value) {
+                                      setState(() {
+                                        dialogCardList[index].groupValue =
+                                            value ?? '';
+                                        dialogCardList[index]
+                                            .firstOptionStatus = false;
+                                        dialogCardList[index]
+                                            .secondOptionStatus = true;
+                                      });
+                                      return null;
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 5),
+                        const TextFormFiledWidget(
+                          textInputType: TextInputType.text,
+                          hintText: "ملاحظات",
+                          prefixIcon: Icons.note,
+                          maxLines: 10,
+                          minLines: 5,
+                          prefixIconColor: AppColor.grey3,
+                          marginBottom: 90.0,
+                          maxLength: 200,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              ButtonElevatedWidget(
+                                title: "إرسال",
+                                onPressed: () {},
+                              ),
+                              ButtonElevatedWidget(
+                                title: "الغاء",
+                                onPressed: () {},
+                                backgroundColor: AppColor.white,
+                                textColor: AppColor.black,
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
               ),
-            ),
+            ],
           );
         },
       );
