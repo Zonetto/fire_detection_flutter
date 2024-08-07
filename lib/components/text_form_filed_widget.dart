@@ -1,5 +1,6 @@
 import 'package:fire_detection_app/utils/app_color.dart';
 import 'package:fire_detection_app/utils/constant.dart';
+import 'package:fire_detection_app/utils/responsive_screen.dart';
 import 'package:fire_detection_app/utils/typedef.dart';
 import 'package:flutter/material.dart';
 
@@ -47,6 +48,7 @@ class TextFormFiledWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double heightDimension = Dimensions.screenHeight(context);
     return TextFormField(
       controller: controller,
       textInputAction: textInputAction,
@@ -57,22 +59,30 @@ class TextFormFiledWidget extends StatelessWidget {
       validator: valid,
       keyboardType: textInputType,
       decoration: InputDecoration(
-          fillColor: AppColor.grey,
-          focusColor: Colors.teal,
-          hintText: hintText,
-          prefixIcon: Container(
-            margin: EdgeInsets.only(bottom: marginBottom ?? 0.0),
-            child: Icon(
-              prefixIcon,
-              color: prefixIconColor,
-            ),
+        fillColor: AppColor.grey,
+        focusColor: Colors.teal,
+        hintText: hintText,
+        hintStyle: TextStyle(
+          fontFamily: FONT_FAMILY,
+          fontSize: MediaQuery.textScalerOf(context).scale(14),
+        ),
+        prefixIcon: Container(
+          margin: EdgeInsets.only(bottom: marginBottom ?? 0.0),
+          child: Icon(
+            prefixIcon,
+            color: prefixIconColor,
+            size: heightDimension * 0.03,
           ),
-          border: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(REDUCE)),
-            borderSide: BorderSide.none,
-          ),
-          filled: true,
-          contentPadding: const EdgeInsets.symmetric(vertical: 15)),
+        ),
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(REDUCE)),
+          borderSide: BorderSide.none,
+        ),
+        filled: true,
+        contentPadding: EdgeInsets.symmetric(
+          vertical: heightDimension * 0.018,
+        ),
+      ),
       cursorColor: AppColor.red,
     );
   }

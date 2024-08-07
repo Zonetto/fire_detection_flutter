@@ -25,34 +25,31 @@ class RadioWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.ltr,
-      child: SizedBox(
-        height: 50.0,
-        child: RadioListTile(
-          contentPadding:
-              const EdgeInsets.only(right: 10, bottom: 0.0, top: 0.0),
-          secondary: TextWidget(
-            title: title,
-            fontWeight: FontWeight.bold,
-            fontSize: 15.0,
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(REDUCE),
-          ),
-          tileColor: AppColor.grey2.withOpacity(0.5),
-          selectedTileColor: AppColor.white,
-          activeColor: AppColor.red,
-          fillColor: WidgetStateProperty.resolveWith<Color>(
-            (Set<WidgetState> states) {
-              return states.contains(WidgetState.selected)
-                  ? AppColor.red
-                  : Colors.white;
-            },
-          ),
-          selected: selected,
-          value: value,
-          groupValue: dialogCardList.groupValue,
-          onChanged: onChanged,
+      child: RadioListTile(
+        contentPadding:
+            const EdgeInsets.only(right: 10, bottom: 0.0, top: 0.0),
+        secondary: TextWidget(
+          title: title,
+          fontWeight: FontWeight.bold,
+          fontSize: 15.0,
         ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(REDUCE),
+        ),
+        tileColor: AppColor.grey2.withOpacity(0.5),
+        selectedTileColor: AppColor.white,
+        activeColor: AppColor.red,
+        fillColor: WidgetStateProperty.resolveWith<Color>(
+          (Set<WidgetState> states) {
+            return states.contains(WidgetState.selected)
+                ? AppColor.red
+                : Colors.white;
+          },
+        ),
+        selected: selected,
+        value: value,
+        groupValue: dialogCardList.groupValue,
+        onChanged: onChanged,
       ),
     );
   }

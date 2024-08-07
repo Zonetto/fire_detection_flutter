@@ -1,6 +1,8 @@
 import 'package:fire_detection_app/components/text_widget.dart';
 import 'package:fire_detection_app/utils/app_color.dart';
 import 'package:fire_detection_app/utils/app_font_size.dart';
+import 'package:fire_detection_app/utils/constant.dart';
+import 'package:fire_detection_app/utils/responsive_screen.dart';
 import 'package:fire_detection_app/utils/typedef.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +23,8 @@ class TabExtinguishers extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: const EdgeInsets.symmetric(vertical: 20),
+          margin: const EdgeInsets.symmetric(
+              vertical: 20, horizontal: HORIZONTAL + 2),
           child: TextWidget(
             title: title,
             fontSize: AppFontSize.textTitle,
@@ -31,12 +34,16 @@ class TabExtinguishers extends StatelessWidget {
         ),
         Expanded(
           child: GridView.builder(
-            shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            // shrinkWrap: true,
+
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              mainAxisSpacing: 10.0,
-              mainAxisExtent: 270.0,
+              mainAxisSpacing: Dimensions.screenWidth(context) * 0.01,
+              crossAxisSpacing: Dimensions.screenWidth(context) * 0.01,
+              mainAxisExtent: Dimensions.screenHeight(context) * 0.33,
+              //   mainAxisExtent: 250,
             ),
+            padding: const EdgeInsets.symmetric(horizontal: HORIZONTAL),
             itemCount: itemCount,
             itemBuilder: itemBuilder,
           ),

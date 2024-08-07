@@ -8,12 +8,11 @@ import 'package:flutter/material.dart';
 
 class MyCardWidget extends StatelessWidget {
   final ExtinguisherModel extinguisher;
-  final VoidCallback? onTab;
+  final VoidCallback? onTap;
   const MyCardWidget({
     super.key,
-    // required this.status,
     required this.extinguisher,
-    this.onTab,
+    this.onTap,
   });
 
   @override
@@ -47,10 +46,12 @@ class MyCardWidget extends StatelessWidget {
       }
     }
 
-    double heightSize = !isDiscover ? 0.054 : 0.1;
+    double screenHeight = Dimensions.screenHeight(context);
+    double screenWidth = Dimensions.screenWidth(context);
+    double heightSize = !isDiscover ? 0.030 : 0.06;
 
     return InkWell(
-      onTap: onTab,
+      onTap: onTap,
       child: Card(
         color: AppColor.white,
         shape: RoundedRectangleBorder(
@@ -60,7 +61,7 @@ class MyCardWidget extends StatelessWidget {
           children: [
             // First part of the card
             Padding(
-              padding: const EdgeInsets.only(right: 10.0),
+              padding: EdgeInsets.only(right: screenWidth * 0.027),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,24 +71,25 @@ class MyCardWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        margin: const EdgeInsets.only(top: 18.0),
+                        width: screenWidth * 0.15,
+                        height: screenHeight * 0.032,
+                        alignment: Alignment.center,
+                        margin: EdgeInsets.only(top: screenHeight * 0.021),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(6),
                           color: counterColor(),
                         ),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0,
-                          vertical: 3.0,
-                        ),
+                        // padding: EdgeInsets.symmetric(
+                        //   horizontal: width * 0.064,
+                        //   vertical: height * 0.004,
+                        // ),
                         child: TextWidget(
                           title: extinguisher.counter.toString(),
                           color: AppColor.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(
-                        height: 10.0,
-                      ),
+                      SizedBox(height: screenHeight * 0.013),
                       const TextWidget(
                         title: "طفاية",
                         color: AppColor.black,
@@ -106,8 +108,8 @@ class MyCardWidget extends StatelessWidget {
                     alignment: Alignment.topLeft,
                     children: [
                       Container(
-                        height: Dimensions.screenHeight(context) * 0.106,
-                        width: Dimensions.screenHeight(context) * 0.072,
+                        height: screenHeight * 0.106,
+                        width: screenWidth * 0.144,
                         decoration: BoxDecoration(
                           borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(20.0),
@@ -117,8 +119,8 @@ class MyCardWidget extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        height: Dimensions.screenHeight(context) * 0.095,
-                        width: Dimensions.screenHeight(context) * 0.060,
+                        height: screenHeight * 0.095,
+                        width: screenWidth * 0.12,
                         decoration: BoxDecoration(
                           borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(20.0),
@@ -126,9 +128,7 @@ class MyCardWidget extends StatelessWidget {
                           ),
                           color: counterColor(),
                         ),
-                        child: Image(
-                          image: AssetImage(extinguisherImage()),
-                        ),
+                        child: Image.asset(extinguisherImage()),
                       ),
                     ],
                   ),
@@ -136,23 +136,23 @@ class MyCardWidget extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: Dimensions.screenHeight(context) * heightSize,
+              height: screenHeight * heightSize,
             ),
             // Second part of the card
             Padding(
-              padding: const EdgeInsets.only(right: 10.0),
+              padding: EdgeInsets.only(right: screenWidth * 0.027),
               child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Image(
-                        image: AssetImage(VECTOR_IMAGE),
-                        height: 17.0,
-                        width: 17.0,
+                      Image(
+                        image: const AssetImage(VECTOR_IMAGE),
+                        height: screenHeight * 0.035, //17.0,
+                        width: screenWidth * 0.035,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
+                        padding: EdgeInsets.only(right: screenWidth * 0.021),
                         child: TextWidget(
                           title: extinguisher.gm.toString(),
                           fontWeight: FontWeight.bold,
@@ -166,19 +166,17 @@ class MyCardWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
+                  SizedBox(height: screenHeight * 0.002),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Image(
-                        image: AssetImage(WIND_SIGN_IMAGE),
-                        height: 17.0,
-                        width: 17.0,
+                      Image(
+                        image: const AssetImage(WIND_SIGN_IMAGE),
+                        height: screenHeight * 0.040, //17.0,
+                        width: screenWidth * 0.040,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
+                        padding: EdgeInsets.only(right: screenWidth * 0.021),
                         child: TextWidget(
                           title: extinguisher.type,
                           fontWeight: FontWeight.bold,
@@ -191,18 +189,13 @@ class MyCardWidget extends StatelessWidget {
               ),
             ),
             //  Third part of the card
-            const SizedBox(
-              height: 25.0,
-            ),
+            SizedBox(height: screenHeight * 0.039),
             !isDiscover
                 ? Container(
-                    width: Dimensions.screenWidth(context),
+                    width: screenWidth,
                     alignment: Alignment.center,
-                    height: 35.0,
-                    margin: const EdgeInsets.only(
-                      right: 5.0,
-                      left: 5.0,
-                    ),
+                    height: screenHeight * 0.042,
+                    margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.013),
                     decoration: BoxDecoration(
                       color: status ? AppColor.green : AppColor.red,
                       borderRadius: const BorderRadius.only(

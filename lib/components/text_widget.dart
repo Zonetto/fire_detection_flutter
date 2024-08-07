@@ -1,5 +1,6 @@
 import 'package:fire_detection_app/utils/app_color.dart';
 import 'package:fire_detection_app/utils/constant.dart';
+import 'package:fire_detection_app/utils/responsive_screen.dart';
 import 'package:flutter/material.dart';
 
 class TextWidget extends StatelessWidget {
@@ -35,12 +36,16 @@ class TextWidget extends StatelessWidget {
       overflow: overflow,
       title,
       maxLines: maxLines,
+      textScaleFactor: Dimensions.textScaleFactor(context),
+      // textScaler: Dimensions.textScaleFactor(context),
       style: TextStyle(
         height: height,
         fontWeight: fontWeight,
         fontFamily: fontFamily,
         color: color,
         fontSize: fontSize,
+        // fontSize: MediaQuery.textScalerOf(context)
+        //     .scale(fontSize ?? AppFontSize.textTitle),
       ),
     );
   }
