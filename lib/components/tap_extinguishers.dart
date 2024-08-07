@@ -34,14 +34,13 @@ class TabExtinguishers extends StatelessWidget {
         ),
         Expanded(
           child: GridView.builder(
-            // shrinkWrap: true,
-
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: Dimensions.screenWidth(context) * 0.01,
               crossAxisSpacing: Dimensions.screenWidth(context) * 0.01,
-              mainAxisExtent: Dimensions.screenHeight(context) * 0.33,
-              //   mainAxisExtent: 250,
+              mainAxisExtent: 250,
             ),
             padding: const EdgeInsets.symmetric(horizontal: HORIZONTAL),
             itemCount: itemCount,
