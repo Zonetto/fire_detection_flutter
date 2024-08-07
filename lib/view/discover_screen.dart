@@ -3,7 +3,7 @@ import 'package:fire_detection_app/components/my_card_widget.dart';
 import 'package:fire_detection_app/components/tap_Extinguishers.dart';
 import 'package:fire_detection_app/model/extinguisher_model.dart';
 import 'package:fire_detection_app/utils/app_color.dart';
-import 'package:fire_detection_app/utils/constant.dart';
+import 'package:fire_detection_app/utils/responsive_screen.dart';
 import 'package:fire_detection_app/utils/s_of.dart';
 import 'package:fire_detection_app/utils/tab_bar.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +20,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
   late TabController _tabController;
   // Fill List
   List<ExtinguisherModel> extinguishersFound = List.generate(
-    20,
+    3,
     (index) {
       return ExtinguisherModel(
         status: index % 2 == 0, // Alternate status between true and false
@@ -79,10 +79,10 @@ class _DiscoverScreenState extends State<DiscoverScreen>
         ),
         actions: [
           IconButton(
-            icon: const Icon(
+            icon: Icon(
               Icons.qr_code,
               color: Colors.black,
-              size: 30,
+              size: Dimensions.screenHeight(context) * 0.045,
             ),
             onPressed: () {
               //  scan.scanQR(context);
@@ -91,33 +91,30 @@ class _DiscoverScreenState extends State<DiscoverScreen>
         ],
       ),
       backgroundColor: AppColor.grey,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: HORIZONTAL),
-        child: TabBarView(
-          controller: _tabController,
-          children: [
-            // Extinguishers Found
-            TabExtinguishers(
-              title: SOf.text(context).extinguishersFound,
-              itemCount: extinguishersFound.length,
-              itemBuilder: (BuildContext context, int index) {
-                return MyCardWidget(
-                  extinguisher: extinguishersFound[index],
-                );
-              },
-            ),
-            // Extinguishers Not Found
-            TabExtinguishers(
-              title: SOf.text(context).extinguishersNotFound,
-              itemCount: extinguishersFound.length,
-              itemBuilder: (BuildContext context, int index) {
-                return MyCardWidget(
-                  extinguisher: extinguishersNotFound[index],
-                );
-              },
-            ),
-          ],
-        ),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          // Extinguishers Found
+          TabExtinguishers(
+            title: SOf.text(context).extinguishersFound,
+            itemCount: extinguishersFound.length,
+            itemBuilder: (BuildContext context, int index) {
+              return MyCardWidget(
+                extinguisher: extinguishersFound[index],
+              );
+            },
+          ),
+          // Extinguishers Not Found
+          TabExtinguishers(
+            title: SOf.text(context).extinguishersNotFound,
+            itemCount: extinguishersFound.length,
+            itemBuilder: (BuildContext context, int index) {
+              return MyCardWidget(
+                extinguisher: extinguishersNotFound[index],
+              );
+            },
+          ),
+        ],
       ),
     );
   }

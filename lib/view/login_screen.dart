@@ -24,26 +24,31 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      backgroundColor: AppColor.white,
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         reverse: true,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          //  mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Stack(
               clipBehavior: Clip.none,
               children: [
                 Container(
-                  height: Dimensions.screenHeight(context) / 1.8,
+                  height: Dimensions.screenHeight(context) * 0.5,
                   width: Dimensions.screenWidth(context),
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(IMAGE_PATH_FIRE_IMAGE),
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 40.0),
+                  padding: EdgeInsets.only(
+                    top: Dimensions.screenHeight(context) * 0.04,
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -59,6 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
             // const Spacer(),
+            SizedBox(height: Dimensions.screenHeight(context) * 0.05),
             Padding(
               padding: EdgeInsets.only(
                 bottom: MediaQuery.of(context).viewInsets.bottom,
@@ -102,14 +108,17 @@ class _LoginScreenState extends State<LoginScreen> {
                               );
                             },
                             title: SOf.text(context).login,
-                            height: 50,
-                            width: 145,
                           ),
-                          const SizedBox(height: 30.0),
+                          SizedBox(
+                            height: Dimensions.screenHeight(context) * 0.03,
+                          ),
                           TextWidget(
                             title: SOf.text(context).reserved,
                             color: AppColor.black,
                             fontSize: AppFontSize.textTitle2,
+                          ),
+                          SizedBox(
+                            height: Dimensions.screenHeight(context) * 0.01,
                           ),
                         ],
                       ),
