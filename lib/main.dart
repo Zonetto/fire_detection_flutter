@@ -2,9 +2,11 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:fire_detection_app/generated/l10n.dart';
 import 'package:fire_detection_app/view/login_screen.dart';
+import 'package:fire_detection_app/view_model/scan_cubit/scan_cubit.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -19,6 +21,7 @@ void main() {
     ],
   );
   runApp(
+    //  const MainApp(),
     DevicePreview(
       enabled: !kReleaseMode,
       builder: (context) => const MainApp(), // Wrap your app
@@ -31,22 +34,30 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      useInheritedMediaQuery: true,
-      builder: DevicePreview.appBuilder,
-      theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      locale: const Locale(LANGUAGE),
-      localizationsDelegates: const [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+    return MultiBlocProvider(
+        providers: [
+        BlocProvider<ScanCubit>(
+          lazy: true,
+          create: (context) => ScanCubit(),
+        ),
       ],
-      debugShowCheckedModeBanner: false,
-      supportedLocales: S.delegate.supportedLocales,
-      home: const LoginScreen(),
+      child: MaterialApp(
+        useInheritedMediaQuery: true,
+        builder: DevicePreview.appBuilder,
+        theme: ThemeData(
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        locale: const Locale(LANGUAGE),
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        debugShowCheckedModeBanner: false,
+        supportedLocales: S.delegate.supportedLocales,
+        home: const LoginScreen(),
+      ),
     );
   }
 }
