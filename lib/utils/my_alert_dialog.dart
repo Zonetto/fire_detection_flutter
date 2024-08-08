@@ -42,11 +42,14 @@ myAlertDialog({
                 ),
                 child: ConstrainedBox(
                   constraints: BoxConstraints(
-                    maxHeight: screenHeight * 0.8,
+                    maxHeight: screenHeight * 0.8, // Adjust this as needed
                   ),
                   child: SingleChildScrollView(
                     child: Padding(
-                      padding: const EdgeInsets.all(14.0),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: HORIZONTAL,
+                      ),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -82,14 +85,16 @@ myAlertDialog({
                                     return CardRadioWidget(
                                       dialogCardList: dialogCardList[index],
                                       onChangedFirst: (String? value) {
-                                        setState(() {
-                                          dialogCardList[index].groupValue =
-                                              value ?? '';
-                                          dialogCardList[index]
-                                              .firstOptionStatus = true;
-                                          dialogCardList[index]
-                                              .secondOptionStatus = false;
-                                        });
+                                        setState(
+                                          () {
+                                            dialogCardList[index].groupValue =
+                                                value ?? '';
+                                            dialogCardList[index]
+                                                .firstOptionStatus = true;
+                                            dialogCardList[index]
+                                                .secondOptionStatus = false;
+                                          },
+                                        );
                                         return null;
                                       },
                                       onChangedSecond: (String? value) {
@@ -109,7 +114,7 @@ myAlertDialog({
                               ),
                             ],
                           ),
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 5),
                           const TextFormFiledWidget(
                             textInputType: TextInputType.text,
                             hintText: "ملاحظات",
@@ -117,8 +122,8 @@ myAlertDialog({
                             maxLines: 10,
                             minLines: 5,
                             prefixIconColor: AppColor.grey3,
-                            marginBottom: 90.0,
                             maxLength: 200,
+                            marginBottom: 90,
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 15),
