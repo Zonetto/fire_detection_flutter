@@ -46,9 +46,9 @@ class MyCardWidget extends StatelessWidget {
       }
     }
 
-    double screenHeight = Dimensions.screenHeight(context);
+    // double screenHeight = Dimensions.screenHeight(context);
     double screenWidth = Dimensions.screenWidth(context);
-    double heightSize = !isDiscover ? 0.030 : 0.06;
+    double heightSize = !isDiscover ? 15 : 50;
 
     return InkWell(
       onTap: onTap,
@@ -71,25 +71,21 @@ class MyCardWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        width: screenWidth * 0.15,
-                        height: screenHeight * 0.032,
+                        width: 60,
+                        height: 20,
                         alignment: Alignment.center,
-                        margin: EdgeInsets.only(top: screenHeight * 0.021),
+                        margin: const EdgeInsets.only(top: 18),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(6),
                           color: counterColor(),
                         ),
-                        // padding: EdgeInsets.symmetric(
-                        //   horizontal: width * 0.064,
-                        //   vertical: height * 0.004,
-                        // ),
                         child: TextWidget(
                           title: extinguisher.counter.toString(),
                           color: AppColor.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: screenHeight * 0.013),
+                      const SizedBox(height: 17),
                       const TextWidget(
                         title: "طفاية",
                         color: AppColor.black,
@@ -108,8 +104,8 @@ class MyCardWidget extends StatelessWidget {
                     alignment: Alignment.topLeft,
                     children: [
                       Container(
-                        height: screenHeight * 0.106,
-                        width: screenWidth * 0.144,
+                        height: 73,
+                        width: 60,
                         decoration: BoxDecoration(
                           borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(20.0),
@@ -119,8 +115,8 @@ class MyCardWidget extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        height: screenHeight * 0.095,
-                        width: screenWidth * 0.12,
+                        height: 65,
+                        width: 50,
                         decoration: BoxDecoration(
                           borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(20.0),
@@ -136,7 +132,7 @@ class MyCardWidget extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: screenHeight * heightSize,
+              height: heightSize,
             ),
             // Second part of the card
             Padding(
@@ -146,10 +142,10 @@ class MyCardWidget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Image(
-                        image: const AssetImage(VECTOR_IMAGE),
-                        height: screenHeight * 0.035, //17.0,
-                        width: screenWidth * 0.035,
+                      const Image(
+                        image: AssetImage(VECTOR_IMAGE),
+                        height: 17,
+                        width: 17,
                       ),
                       Padding(
                         padding: EdgeInsets.only(right: screenWidth * 0.021),
@@ -166,14 +162,14 @@ class MyCardWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: screenHeight * 0.002),
+                  const SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Image(
-                        image: const AssetImage(WIND_SIGN_IMAGE),
-                        height: screenHeight * 0.040, //17.0,
-                        width: screenWidth * 0.040,
+                      const Image(
+                        image: AssetImage(WIND_SIGN_IMAGE),
+                        height: 17,
+                        width: 17,
                       ),
                       Padding(
                         padding: EdgeInsets.only(right: screenWidth * 0.021),
@@ -189,13 +185,14 @@ class MyCardWidget extends StatelessWidget {
               ),
             ),
             //  Third part of the card
-            SizedBox(height: screenHeight * 0.039),
+            const SizedBox(height: 40),
             !isDiscover
                 ? Container(
                     width: screenWidth,
                     alignment: Alignment.center,
-                    height: screenHeight * 0.042,
-                    margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.013),
+                    height: 30,
+                    margin:
+                        EdgeInsets.symmetric(horizontal: screenWidth * 0.013),
                     decoration: BoxDecoration(
                       color: status ? AppColor.green : AppColor.red,
                       borderRadius: const BorderRadius.only(
