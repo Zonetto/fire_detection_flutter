@@ -40,101 +40,108 @@ myAlertDialog({
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
                 ),
-                child: SingleChildScrollView(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      children: [
-                        // title
-                        Container(
-                          padding: const EdgeInsets.symmetric(vertical: 15),
-                          alignment: Alignment.center,
-                          child: TextWidget(
-                            title: barCodeInfo,
-                            fontSize: AppFontSize.textAppBar,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        // content
-                        Row(
-                          children: [
-                            Expanded(
-                              child: GridView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  mainAxisSpacing:
-                                      Dimensions.screenWidth(context) * 0.01,
-                                  crossAxisSpacing:
-                                      Dimensions.screenWidth(context) * 0.01,
-                                  mainAxisExtent: 190.0,
-                                  // mainAxisExtent:
-                                  //     Dimensions.screenHeight(context) * 0.25,
-                                ),
-                                itemCount: dialogCardList.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return CardRadioWidget(
-                                    dialogCardList: dialogCardList[index],
-                                    onChangedFirst: (String? value) {
-                                      setState(() {
-                                        dialogCardList[index].groupValue =
-                                            value ?? '';
-                                        dialogCardList[index]
-                                            .firstOptionStatus = true;
-                                        dialogCardList[index]
-                                            .secondOptionStatus = false;
-                                      });
-                                      return null;
-                                    },
-                                    onChangedSecond: (String? value) {
-                                      setState(() {
-                                        dialogCardList[index].groupValue =
-                                            value ?? '';
-                                        dialogCardList[index]
-                                            .firstOptionStatus = false;
-                                        dialogCardList[index]
-                                            .secondOptionStatus = true;
-                                      });
-                                      return null;
-                                    },
-                                  );
-                                },
-                              ),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxHeight: screenHeight * 0.8,
+                  ),
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(14.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          // title
+                          Container(
+                            padding: const EdgeInsets.symmetric(vertical: 15),
+                            alignment: Alignment.center,
+                            child: TextWidget(
+                              title: barCodeInfo,
+                              fontSize: AppFontSize.textAppBar,
+                              fontWeight: FontWeight.bold,
                             ),
-                          ],
-                        ),
-                        const SizedBox(height: 5),
-                        const TextFormFiledWidget(
-                          textInputType: TextInputType.text,
-                          hintText: "ملاحظات",
-                          prefixIcon: Icons.note,
-                          maxLines: 10,
-                          minLines: 5,
-                          prefixIconColor: AppColor.grey3,
-                          marginBottom: 90.0,
-                          maxLength: 200,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          ),
+                          // content
+                          Row(
                             children: [
-                              ButtonElevatedWidget(
-                                title: "إرسال",
-                                onPressed: () {},
-                              ),
-                              ButtonElevatedWidget(
-                                title: "الغاء",
-                                onPressed: () {},
-                                backgroundColor: AppColor.white,
-                                textColor: AppColor.black,
+                              Expanded(
+                                child: GridView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    mainAxisSpacing:
+                                        Dimensions.screenWidth(context) * 0.01,
+                                    crossAxisSpacing:
+                                        Dimensions.screenWidth(context) * 0.01,
+                                    mainAxisExtent: 190.0,
+                                  ),
+                                  itemCount: dialogCardList.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return CardRadioWidget(
+                                      dialogCardList: dialogCardList[index],
+                                      onChangedFirst: (String? value) {
+                                        setState(() {
+                                          dialogCardList[index].groupValue =
+                                              value ?? '';
+                                          dialogCardList[index]
+                                              .firstOptionStatus = true;
+                                          dialogCardList[index]
+                                              .secondOptionStatus = false;
+                                        });
+                                        return null;
+                                      },
+                                      onChangedSecond: (String? value) {
+                                        setState(() {
+                                          dialogCardList[index].groupValue =
+                                              value ?? '';
+                                          dialogCardList[index]
+                                              .firstOptionStatus = false;
+                                          dialogCardList[index]
+                                              .secondOptionStatus = true;
+                                        });
+                                        return null;
+                                      },
+                                    );
+                                  },
+                                ),
                               ),
                             ],
                           ),
-                        ),
-                      ],
+                          const SizedBox(height: 10),
+                          const TextFormFiledWidget(
+                            textInputType: TextInputType.text,
+                            hintText: "ملاحظات",
+                            prefixIcon: Icons.note,
+                            maxLines: 10,
+                            minLines: 5,
+                            prefixIconColor: AppColor.grey3,
+                            marginBottom: 90.0,
+                            maxLength: 200,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                ButtonElevatedWidget(
+                                  title: "إرسال",
+                                  onPressed: () {},
+                                ),
+                                ButtonElevatedWidget(
+                                  title: "الغاء",
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  backgroundColor: AppColor.white,
+                                  textColor: AppColor.black,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
