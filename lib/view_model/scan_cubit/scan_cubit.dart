@@ -1,6 +1,6 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'scan_state.dart';
 
 class ScanCubit extends Cubit<ScanState> {
@@ -11,8 +11,9 @@ class ScanCubit extends Cubit<ScanState> {
     _barcodeScanRes = null;
   }
 
-  Future<void> scanQR(BuildContext context) async {
+  Future<void> qr(BuildContext context) async {
     try {
+      emit(ScanLoadedState(isLoad: true));
       _barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
         '#ff6666',
         'الغاء',
@@ -20,13 +21,16 @@ class ScanCubit extends Cubit<ScanState> {
         ScanMode.QR,
       );
       if (_barcodeScanRes != "-1") {
+        emit(ScanLoadedState(isLoad: false));
         emit(ScanSuccessfulState(barcodeScanRes: _barcodeScanRes!));
         _clearBarcodeScanRes();
       } else {
+        emit(ScanLoadedState(isLoad: false));
         emit(ScanFailureState(error: "Failed to get platform version"));
         _clearBarcodeScanRes();
       }
     } catch (e) {
+      emit(ScanLoadedState(isLoad: false));
       emit(ScanFailureState(error: e.toString()));
       _clearBarcodeScanRes();
     }
