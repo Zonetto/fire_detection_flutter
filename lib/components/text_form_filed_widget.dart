@@ -78,6 +78,18 @@ class TextFormFiledWidget extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(REDUCE)),
           borderSide: BorderSide.none,
         ),
+        focusedBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(REDUCE)),
+          borderSide: BorderSide(color: AppColor.grey2),
+        ),
+        errorBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(REDUCE)),
+          borderSide: BorderSide(color: AppColor.red),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(REDUCE)),
+          borderSide: BorderSide(color: AppColor.grey2),
+        ),
         filled: true,
         contentPadding: EdgeInsets.symmetric(
           vertical: heightDimension * 0.018,
